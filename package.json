@@ -15,16 +15,16 @@
     "user": "bun run cli/user.ts"
   },
   "devDependencies": {
-    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/cli": "^4.3.5",
     "@types/bun": "latest",
     "daisyui": "^5.7.50",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.5"
   },
   "peerDependencies": {
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "hono": "^4.13.13",
+    "hono": "^4.13.18",
     "sharp": "^0.35.5"
   }
 }
