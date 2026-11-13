@@ -758,9 +758,13 @@ describe('map detail', () => {
 
   test('the page freeze behind the full-size view survives the CSS build', async () => {
     // daisyUI's own scroll lock, which only works while the toggle sits
-    // directly before the modal.
+    // directly before the modal. Since daisyUI 5.8 an open modal sets a
+    // space-toggle custom property on the root…
     const css = await Bun.file('public/app.css').text();
-    expect(css).toContain(':root:has(.modal-toggle:checked+.modal)');
+    expect(css).toMatch(/:root:has\([^{]*\.modal-toggle:checked\+\.modal[^{]*\)\{--page-scroll-lock: \}/);
+    // …and the root turns that into overflow: hidden.
+    expect(css).toContain('--page-overflow:var(--page-scroll-lock) hidden');
+    expect(css).toMatch(/:root[^{]*\{overflow:var\(--page-overflow\)\}/);
   });
 });
 
